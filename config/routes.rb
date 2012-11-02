@@ -1,4 +1,11 @@
 TaskManager::Application.routes.draw do
+
+  root to: "users#index"
+
+  get "/login" => "sessions#login", :as => :login
+  post "/login" => "sessions#login_check"
+  get "/logout" => "sessions#logout"
+  
   resources :users
 
   # The priority is based upon order of creation:
