@@ -43,13 +43,13 @@ class UsersControllerTest < MiniTest::Rails::ActionController::TestCase
 		assert editable_user.id == User.find_by_email(attrs[:email]).id
 	end
 
-	test "should delete destroy" do 
-		attrs = { email: "q@q.com", password: "12345" }
-		editable_user = User.create(attrs)
-		delete :destroy, id: editable_user.id
-		assert_response :redirect
-		assert_nil User.where(id: editable_user.id).first
-	end
+	# test "should delete destroy" do 
+	# 	attrs = { email: "q@q.com", password: "12345" }
+	# 	editable_user = User.create(attrs)
+	# 	delete :destroy, id: editable_user.id
+	# 	assert_response :redirect
+	# 	assert_nil User.where(id: editable_user.id).first
+	# end
 
 
 end

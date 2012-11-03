@@ -1,7 +1,7 @@
 module AuthHelper
 
 	def authenticate_user
-		redirect_to new_sessions_path unless signed_in?
+		redirect_to new_session_path unless signed_in?
 	end
 
 	def sign_in(user)

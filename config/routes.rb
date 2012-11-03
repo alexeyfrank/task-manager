@@ -2,9 +2,10 @@ TaskManager::Application.routes.draw do
 
   root to: "users#index"
 
-  resource :sessions 
+  resource :session
 
   resources :users
+  resources :stories
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

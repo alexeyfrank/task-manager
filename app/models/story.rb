@@ -7,25 +7,24 @@ class Story < ActiveRecord::Base
   validates :author_id, presence:true
   validates :performer_id, presence:true
   validates :title, presence:true
-  validates :state, presence:true
+  # validates :state, presence:true
 
   state_machine initial: :new do
-  	event :start do 
-  		transition :new => :started
-  	end
+    event :accept do
+      transition [:new, :rejected] => :accepted
+    end
 
-  	event :finish do 
-  		transition :started => :finished
-  	end
+    event :reject do
+      transition :new => :rejected
+    end
 
-  	event :accept do 
-  		transition :finished => :accepted
-  	end
+    event :start do
+      transition :accepted => :started
+    end
 
-  	event :reject do 
-  		transition :finished => :rejected
-  	end
-
+    event :finish do
+      transition :started => :finished
+    end
   end
 
 end
