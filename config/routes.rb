@@ -5,7 +5,9 @@ TaskManager::Application.routes.draw do
   resource :session
 
   resources :users
-  resources :stories
+  resources :stories do
+    get "/:event" => "stories#set_state", as: :set_state
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

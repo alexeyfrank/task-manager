@@ -10,6 +10,13 @@ class StoriesController < ApplicationController
     @story = Story.find(params[:id])
   end
 
+  def set_state
+    @story = Story.find(params[:story_id])
+    @story.fire_state_event(params[:event])
+    @story.save
+    redirect_to story_path(@story)
+  end
+
   def new
     @story = Story.new
   end

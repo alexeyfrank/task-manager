@@ -1,19 +1,26 @@
-%h1 Listing users
+%h1 Список пользователей
+
+%br
+= link_to 'Создать пользователя', new_user_path, class: "btn btn-primary"
+%br
+%br
 
 %table.table.table-bordered
   %tr
+    %th #
     %th Email
+    %th Поставленные им задачи
+    %th Поставленные на него задачи
     %th
     %th
     %th
 
   - @users.each do |user|
     %tr
+      %td= user.id
       %td= user.email
-      %td= link_to 'Show', user
-      %td= link_to 'Edit', edit_user_path(user)
-      / %td= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New User', new_user_path
+      %td= user.own_stories.count
+      %td= user.assigned_stories.count
+      %td= link_to 'Просмотр', user
+      %td= link_to 'Редактировать', edit_user_path(user)
+      %td= link_to 'Удалить', user, method: :delete, data: { confirm: 'Are you sure?' }

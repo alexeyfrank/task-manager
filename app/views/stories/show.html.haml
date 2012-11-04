@@ -1,6 +1,27 @@
-%p#notice= notice
+- if @story.performer_id == current_user.id
+  = link_to "Принять задачу", story_set_state_path(@story.id, :accept) if @story.can_accept?
+  = link_to "Отклонить задачу", story_set_state_path(@story.id, :reject) if @story.can_reject?
+  = link_to "Начать выполнение", story_set_state_path(@story.id, :start) if @story.can_start?
+  = link_to "Завершить выполнение", story_set_state_path(@story.id, :finish) if @story.can_finish?
 
 
-= link_to 'Edit', edit_story_path(@story)
+%p Название
+%p= @story.title
+%p Постановщик
+%p= link_to @story.author.email, @story.author
+
+%p Исполнитель
+%p= link_to @story.performer.email, @story.performer
+
+%p Статус задачи
+%p
+  %strong= @story.state_name
+
+%p Описание
+%p= @story.description
+
+
+
+= link_to 'Редактировать задачу', edit_story_path(@story)
 \|
-= link_to 'Back', stories_path
+= link_to 'Назад к списку задач', stories_path

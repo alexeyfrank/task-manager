@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
 
   before_filter :authenticate_user
-  
+
   def index
-    @users = User.all
+    @users = User.includes(:own_stories, :assigned_stories).all
   end
 
   def show
@@ -38,9 +38,9 @@ class UsersController < ApplicationController
     end
   end
 
-  # def destroy
-  #   @user = User.find(params[:id])
-  #   @user.destroy
-  #   redirect_to users_url
-  # end
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to users_url
+  end
 end
