@@ -7,7 +7,7 @@ class StoriesController < ApplicationController
   end
 
   def show
-    @story = Story.find(params[:id])
+    @story = Story.includes(:comments => [:author]).find(params[:id])
   end
 
   def change_state

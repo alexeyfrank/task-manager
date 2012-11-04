@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 
 	has_many :own_stories, class_name: :Story, foreign_key: :author_id
 	has_many :assigned_stories, class_name: :Story, foreign_key: :performer_id
+	has_many :comments, foreign_key: :author_id
 
 	validates :email,
 					presence: true,

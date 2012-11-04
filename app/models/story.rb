@@ -4,6 +4,8 @@ class Story < ActiveRecord::Base
   belongs_to :author, class_name: :User
   belongs_to :performer, class_name: :User
 
+  has_many :comments
+
   validates :author_id, presence:true
   validates :performer_id, presence:true
   validates :title, presence:true

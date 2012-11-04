@@ -1,0 +1,6 @@
+%h3 Новый комментарий
+= simple_form_for([@story, comment]) do |f|
+  = f.input :story_id, as: :hidden
+  = f.input :author_id, input_html: { value: current_user.id }, as: :hidden
+  = f.input :content, as: :text, input_html: { rows: 8, cols: 80, class: "input-xxlarge" } 
+  = f.submit

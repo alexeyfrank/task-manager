@@ -20,8 +20,17 @@
 %p Описание
 %p= @story.description
 
-
-
 = link_to 'Редактировать задачу', edit_story_path(@story)
 \|
 = link_to 'Назад к списку задач', stories_path
+
+%br
+%br
+.comment-list
+  - @story.comments.reverse.each do |comment|
+    .comment
+      = comment.content
+      %br
+      = link_to comment.author.email, comment.author
+
+= render partial: "comments/form", locals: { comment: Comment.new(story_id: @story.id) }

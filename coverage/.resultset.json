@@ -9,11 +9,11 @@
         1,
         null,
         1,
-        14,
+        15,
         null,
         null,
         1,
-        16,
+        17,
         null,
         null,
         1,
@@ -21,13 +21,17 @@
         null,
         null,
         1,
-        26,
+        27,
         null,
         null,
         1,
-        23,
+        25,
         null,
         null,
+        null
+      ],
+      "/home/frank/prj/ruby/task_manager/app/helpers/comments_helper.rb": [
+        1,
         null
       ],
       "/home/frank/prj/ruby/task_manager/app/helpers/stories_helper.rb": [
@@ -38,12 +42,26 @@
         1,
         null
       ],
+      "/home/frank/prj/ruby/task_manager/app/models/comment.rb": [
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
       "/home/frank/prj/ruby/task_manager/app/models/user.rb": [
         1,
         1,
         null,
         1,
         null,
+        1,
         1,
         1,
         null,
@@ -73,15 +91,13 @@
         1,
         null,
         1,
-        1,
-        1,
-        null,
         null,
         1,
         1,
         1,
         null,
         null,
+        1,
         1,
         1,
         null,
@@ -93,6 +109,30 @@
         1,
         1,
         null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/home/frank/prj/ruby/task_manager/test/functional/comments_controller_test.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
         null,
         null,
         null
@@ -261,6 +301,34 @@
         null,
         null
       ],
+      "/home/frank/prj/ruby/task_manager/app/controllers/comments_controller.rb": [
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/home/frank/prj/ruby/task_manager/app/controllers/application_controller.rb": [
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        null
+      ],
       "/home/frank/prj/ruby/task_manager/app/controllers/sessions_controller.rb": [
         1,
         null,
@@ -283,16 +351,6 @@
         null,
         1,
         1,
-        1,
-        null,
-        null
-      ],
-      "/home/frank/prj/ruby/task_manager/app/controllers/application_controller.rb": [
-        1,
-        1,
-        null,
-        1,
-        null,
         1,
         null,
         null
@@ -407,6 +465,6 @@
         null
       ]
     },
-    "timestamp": 1352019973
+    "timestamp": 1352023719
   }
 }
