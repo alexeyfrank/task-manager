@@ -19,8 +19,9 @@ class User < ActiveRecord::Base
 
 
     before_destroy do |user|
-    	return false if user.own_stories.count
-    	return false if user.assigned_stories.count
+    	return false if user.own_stories.count > 0
+    	return false if user.assigned_stories.count > 0
+    	return user
     end
 
 end
