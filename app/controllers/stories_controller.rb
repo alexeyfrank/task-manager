@@ -3,9 +3,17 @@ class StoriesController < ApplicationController
   before_filter :authenticate_user
 
   def index
-    @stories = Story.all
+    q = params[:q]
+    @stories = Story
+    if q
+      @stories = @stories.where(author_id: q[:author_id]) unless q[:author_id].blank?
+      @stories = @stories.where(performer_id: q[:performer_id]) unless q[:performer_id].blank?
+      @stories = @stories.where(state: q[:state]) unless q[:state].blank?
+    end
+    
+    @stories = @stories.all
   end
-
+  
   def show
     @story = Story.includes(:comments => [:author]).find(params[:id])
   end

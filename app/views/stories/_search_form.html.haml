@@ -1,0 +1,6 @@
+.search
+  = simple_form_for(:q, method: :get, url: stories_path) do |f|
+    = f.input :author_id, collection: User.all, label_method: :email, value_method: :id
+    = f.input :performer_id, collection: User.all, label_method: :email, value_method: :id
+    = f.input :state, collection: Story.state_machine.states, label_method: :name, value_method: :name
+    = f.submit
