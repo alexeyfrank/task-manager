@@ -10,11 +10,16 @@ class StoriesController < ApplicationController
     @story = Story.find(params[:id])
   end
 
-  def set_state
+  def change_state
     @story = Story.find(params[:story_id])
-    @story.fire_state_event(params[:event])
-    @story.save
-    redirect_to story_path(@story)
+    if @story.performer_id == current_user.id
+      @story.fire_state_event(params[:event])
+      @story.save
+      redirect_to story_path(@story)
+    else
+      flash[:error] = "This is not your task!"
+      render :show 
+    end
   end
 
   def new
