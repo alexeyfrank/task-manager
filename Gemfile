@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
-# gem 'pg'
+gem 'pg'
 
 gem 'twitter-bootstrap-rails', '2.0.3'
 gem 'jquery-rails'
