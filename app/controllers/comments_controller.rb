@@ -4,13 +4,8 @@ class CommentsController < ApplicationController
 	layout nil
 
 	def create
-		@comment = Comment.new(params[:comment])
-		if @comment.save
-			redirect_to story_path(@comment.story_id)
-		else
-			flash[:error] = "Please write a comment message!"
-			redirect_to story_path(@comment.story_id)
-		end
+		story = Story.find(params[:story_id])
+		flash[:error] = "Please write a comment message!" unless story.comments.create(params[:comment])
+		redirect_to story_path(story)
 	end
-
 end

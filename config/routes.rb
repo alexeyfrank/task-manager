@@ -1,6 +1,6 @@
 TaskManager::Application.routes.draw do
 
-  root to: "stories#index"
+  root to: "dashboard#index"
 
   resource :session
   resources :users

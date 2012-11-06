@@ -1,9 +1,9 @@
-require "minitest_helper"
+require "test_helper"
 
-class SessionsControllerTest < MiniTest::Rails::ActionController::TestCase
+class SessionsControllerTest < ActionController::TestCase
   
   def setup
-  	@member = User.create(email: "test@test.com", password: "12345")
+  	@member = create :user # User.create(email: "test@test.com", password: "12345")
   end
 
   test "should get new" do

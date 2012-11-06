@@ -10,24 +10,23 @@ class StoriesController < ApplicationController
       @stories = @stories.where(performer_id: q[:performer_id]) unless q[:performer_id].blank?
       @stories = @stories.where(state: q[:state]) unless q[:state].blank?
     end
-    
+
     @stories = @stories.all
   end
-  
+
   def show
     @story = Story.includes(:comments => [:author]).find(params[:id])
   end
 
   def change_state
-    @story = Story.find(params[:story_id])
-    if @story.performer_id == current_user.id
+    @story = current_user.assigned_stories.find_by_id(params[:story_id])
+    if @story
       @story.fire_state_event(params[:event])
       @story.save
-      redirect_to story_path(@story)
     else
       flash[:error] = "This is not your task!"
-      render :show 
     end
+    redirect_to story_path(params[:story_id])
   end
 
   def new

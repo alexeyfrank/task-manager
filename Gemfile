@@ -22,6 +22,7 @@ group :development, :test do
 	gem 'sqlite3'
 	gem 'turn'
 	gem 'tconsole'
-	gem 'minitest-rails'
+	gem 'minitest'
+	gem 'factory_girl_rails'
 	gem 'simplecov', require: false
 end

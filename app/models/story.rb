@@ -6,8 +6,8 @@ class Story < ActiveRecord::Base
 
   has_many :comments
 
-  validates :author_id, presence:true
-  validates :performer_id, presence:true
+  validates :author, presence:true
+  validates :performer, presence:true
   validates :title, presence:true
   # validates :state, presence:true
 

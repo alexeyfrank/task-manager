@@ -3,25 +3,18 @@ class User < ActiveRecord::Base
 
 	attr_accessible :email, :password, :password_confirmation
 
-	has_many :own_stories, class_name: :Story, foreign_key: :author_id
-	has_many :assigned_stories, class_name: :Story, foreign_key: :performer_id
+	has_many :own_stories, class_name: :Story, foreign_key: :author_id, dependent: :restrict
+	has_many :assigned_stories, class_name: :Story, foreign_key: :performer_id, dependent: :restrict
 	has_many :comments, foreign_key: :author_id
 
 	validates :email,
 					presence: true,
 					uniqueness: true,
-					format: { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
+					email: true
 
 	validates :password,
 						presence: true,
 						length: { minimum: 5 },
 						confirmation: true
-
-
-    before_destroy do |user|
-    	return false if user.own_stories.count > 0
-    	return false if user.assigned_stories.count > 0
-    	return user
-    end
 
 end

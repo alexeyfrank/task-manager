@@ -1,8 +1,8 @@
-require "minitest_helper"
+require "test_helper"
 
-class UsersControllerTest < MiniTest::Rails::ActionController::TestCase
+class UsersControllerTest < ActionController::TestCase
 	def setup
-		@user = User.create(email: "test@test.com", password: "12345")
+		@user = create :user
 		sign_in @user
 	end
 
@@ -29,8 +29,7 @@ class UsersControllerTest < MiniTest::Rails::ActionController::TestCase
 	end
 
 	test "should get edit" do 
-		@editable_user = User.create(email: "q@q.com", password: "12345")
-		get :edit, id: @editable_user.id
+		get :edit, id: @user.id
 		assert_response :success
 	end
 
@@ -40,16 +39,15 @@ class UsersControllerTest < MiniTest::Rails::ActionController::TestCase
 		attrs = { email: "new@email.com", password: attrs[:password] }
 		put :update, id: editable_user.id, user: attrs
 		assert_response :redirect
-		assert editable_user.id == User.find_by_email(attrs[:email]).id
+		assert editable_user == User.find_by_email(attrs[:email])
 	end
 
-	# test "should delete destroy" do 
-	# 	attrs = { email: "q@q.com", password: "12345" }
-	# 	editable_user = User.create(attrs)
-	# 	delete :destroy, id: editable_user.id
-	# 	assert_response :redirect
-	# 	assert_nil User.where(id: editable_user.id).first
-	# end
-
+	test "should delete destroy" do 
+		attrs = { email: "q@q.com", password: "12345" }
+		editable_user = User.create(attrs)
+		delete :destroy, id: editable_user.id
+		assert_response :redirect
+		assert_nil User.where(id: editable_user.id).first
+	end
 
 end

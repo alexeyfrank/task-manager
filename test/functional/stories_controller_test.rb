@@ -1,12 +1,12 @@
-require "minitest_helper"
+require "test_helper"
 
-class StoriesControllerTest < MiniTest::Rails::ActionController::TestCase
+class StoriesControllerTest < ActionController::TestCase
 
 	def setup
-		@author = User.create!(email: "author@user.com", password: "12345")
-		@performer = User.create!(email: "performer@user.com", password: "12345")
-		@story = Story.create!(title: "test story", author_id: @author.id, performer_id: @performer.id)
-	
+		@author = create :author
+		@performer = create :performer
+		@story = create :story, author: @author, performer: @performer
+
 		sign_in @author
 	end
 
@@ -23,7 +23,7 @@ class StoriesControllerTest < MiniTest::Rails::ActionController::TestCase
 
 	test "shouldn't change state if not performer" do 
 		get :change_state, story_id: @story.id, event: "accept"
-		assert_response :success
+		assert_response :redirect
 		assert flash[:error]
 	end
 
@@ -48,7 +48,7 @@ class StoriesControllerTest < MiniTest::Rails::ActionController::TestCase
 		attrs = { title: "new title", author_id: @author.id, performer_id: @performer.id }
 		put :update, id: @story.id, story: attrs
 		assert_response :redirect
-		assert Story.find_by_title("new title").id == @story.id
+		assert Story.find_by_title("new title") == @story
 	end
 
 	test "should delete destroy" do 
