@@ -4,4 +4,7 @@
 
 require File.expand_path('../config/application', __FILE__)
 
+task :default => [:test]
+
 TaskManager::Application.load_tasks
+
