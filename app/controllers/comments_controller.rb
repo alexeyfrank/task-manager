@@ -5,7 +5,9 @@ class CommentsController < ApplicationController
 
 	def create
 		story = Story.find(params[:story_id])
-		flash[:error] = "Please write a comment message!" unless story.comments.create(params[:comment])
+		unless story.comments.create(params[:comment])
+			flash[:error] = "Please write a comment message!"
+		end
 		redirect_to story_path(story)
 	end
 end

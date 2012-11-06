@@ -39,7 +39,8 @@ class UsersControllerTest < ActionController::TestCase
 		attrs = { email: "new@email.com", password: attrs[:password] }
 		put :update, id: editable_user.id, user: attrs
 		assert_response :redirect
-		assert editable_user == User.find_by_email(attrs[:email])
+		updated_user = User.find_by_email(attrs[:email])
+		assert_equal editable_user, updated_user
 	end
 
 	test "should delete destroy" do 
@@ -47,7 +48,7 @@ class UsersControllerTest < ActionController::TestCase
 		editable_user = User.create(attrs)
 		delete :destroy, id: editable_user.id
 		assert_response :redirect
-		assert_nil User.where(id: editable_user.id).first
+		assert !User.exists?(editable_user.id)
 	end
 
 end

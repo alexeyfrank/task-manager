@@ -48,7 +48,8 @@ class StoriesControllerTest < ActionController::TestCase
 		attrs = { title: "new title", author_id: @author.id, performer_id: @performer.id }
 		put :update, id: @story.id, story: attrs
 		assert_response :redirect
-		assert Story.find_by_title("new title") == @story
+		updated_story = Story.find_by_title("new title")
+		assert_equal updated_story, @story
 	end
 
 	test "should delete destroy" do 
