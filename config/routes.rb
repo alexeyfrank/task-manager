@@ -5,7 +5,7 @@ TaskManager::Application.routes.draw do
   resource :session
   resources :users
   resources :stories do
-    get "/:event" => "stories#change_state", as: :set_state
+    put :change_state
     resources :comments
   end
   
